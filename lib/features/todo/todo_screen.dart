@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:s3_firebase_demo/features/todo/providers.dart';
 
-import 'providers.dart';
-
-// Écran principal de l'app : formulaire + liste des tâches.
 class TodoScreen extends ConsumerStatefulWidget {
   const TodoScreen({super.key});
 
@@ -16,45 +14,42 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
   // Contrôleur du champ texte pour récupérer et vider la saisie.
   final TextEditingController _textController = TextEditingController();
 
-  // Ajoute un document dans Firestore avec un titre et un indicateur "done".
+  // Ajoute un document (todo) dans la collection todos (Create)
   Future<void> _addTodo() async {
-    final text = _textController.text.trim(); // Nettoie la saisie.
-    if (text.isEmpty) return; // Sort si rien n'a été écrit.
+    final title = _textController.text.trim();
+    if (title.isEmpty) return;
 
-    final todosCollection = ref.read(
-      todosCollectionProvider,
-    ); // Récupère la collection.
+    final todosCollection = ref.read(todosCollectionProvider);
 
     await todosCollection.add({
-      'title': text,
+      'title': title,
       'done': false,
-      'createdAt': FieldValue.serverTimestamp(),
+      "createdAt": FieldValue.serverTimestamp(),
     });
 
-    _textController.clear(); // Vide le champ après l'enregistrement.
+    _textController.clear(); // vide le champ de saisie
   }
 
-  // Bascule la valeur "done" du document reçu.
+  // Marquer la tache comme terminé (Update)
   Future<void> _toggleTodo(DocumentSnapshot<Map<String, dynamic>> doc) async {
-    final current = doc.data()?['done'] as bool? ?? false;
-    await doc.reference.update({'done': !current});
+    final currentTodo = doc.data()?['done'] as bool? ?? false;
+    await doc.reference.update({'done': currentTodo});
   }
 
-  // Supprime le document reçu.
+  // supprimer une todo (Delete)
   Future<void> _deleteTodo(DocumentSnapshot<Map<String, dynamic>> doc) async {
     await doc.reference.delete();
   }
 
   @override
   void dispose() {
-    _textController
-        .dispose(); // Libère le contrôleur quand l'écran est détruit.
+    _textController.dispose(); // Libère le contrôleur
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Récupère l'état du stream (loading / data / error).
+    // recupere l'etat actuel du stream (loading (chargement), data (données chargées), error (erreur de chargement))
     final todosAsync = ref.watch(todosStreamProvider);
 
     return Scaffold(
@@ -62,11 +57,11 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               'Ajouter une tâche',
-              style: TextStyle(fontSize: 18, fontWeight: .bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Row(
@@ -90,7 +85,7 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
             const SizedBox(height: 16),
             const Text(
               'Vos tâches',
-              style: TextStyle(fontSize: 18, fontWeight: .bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Expanded(
@@ -101,7 +96,8 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
                 error: (error, stack) =>
                     Center(child: Text('Erreur: $error')), // Erreur.
                 data: (snapshot) {
-                  final docs = snapshot.docs; // Liste des documents Firestore.
+                  final docs = snapshot
+                      .docs; // liste de documents dans la collection "todos"
                   if (docs.isEmpty) {
                     return const Center(
                       child: Text('Aucune tâche. Ajoutez-en une ci-dessus.'),
@@ -112,16 +108,18 @@ class _TodoScreenState extends ConsumerState<TodoScreen> {
                     itemCount: docs.length,
                     itemBuilder: (context, index) {
                       final doc = docs[index];
-                      final data = doc.data();
-                      final title = data['title'] as String? ?? '';
-                      final done = data['done'] as bool? ?? false;
+                      final todo = doc.data();
+                      final title = todo['title'] as String? ?? '';
+                      final done = todo['done'] as bool? ?? false;
 
                       return Card(
                         child: ListTile(
                           title: Text(
                             title,
                             style: TextStyle(
-                              decoration: done ? .lineThrough : .none,
+                              decoration: done
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
                             ),
                           ),
                           leading: Checkbox(

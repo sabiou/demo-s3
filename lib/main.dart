@@ -7,11 +7,9 @@ import 'firebase_options.dart';
 import 'features/todo/todo_screen.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Prépare les plugins Flutter.
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, // Charge la config Firebase.
-  );
-  runApp(const ProviderScope(child: TodoApp())); // Active Riverpod et lance l'app.
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const ProviderScope(child: TodoApp()));
 }
 
 class TodoApp extends StatelessWidget {
@@ -19,7 +17,6 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // App simple avec un thème vert et un seul écran.
     return MaterialApp(
       title: 'Firebase TODO Demo',
       theme: ThemeData(
