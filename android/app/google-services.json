@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "565155796538",
-    "project_id": "semaine-3",
-    "storage_bucket": "semaine-3.firebasestorage.app"
+    "project_number": "YOUR_PROJECT_NUMBER",
+    "project_id": "YOUR_PROJECT_ID",
+    "storage_bucket": "YOUR_STORAGE_BUCKET"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:565155796538:android:94998ea485263a99108703",
+        "mobilesdk_app_id": "YOUR_ANDROID_APP_ID",
         "android_client_info": {
           "package_name": "com.example.demo_1"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCAGmfdxF8pfPh3DC413f4nkbetP8CR4dY"
+          "current_key": "YOUR_ANDROID_API_KEY"
         }
       ],
       "services": {
@@ -26,7 +26,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:565155796538:android:e73495ff47293660108703",
+        "mobilesdk_app_id": "YOUR_ANDROID_APP_ID_SECONDARY",
         "android_client_info": {
           "package_name": "com.example.s3_firebase_demo"
         }
@@ -34,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCAGmfdxF8pfPh3DC413f4nkbetP8CR4dY"
+          "current_key": "YOUR_ANDROID_API_KEY"
         }
       ],
       "services": {

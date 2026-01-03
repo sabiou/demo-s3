@@ -50,20 +50,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAHfyQluJAX_8IdKe8A829_QKLfqtH5J4E',
-    appId: '1:452846988202:android:6c0ae183e13d9b336159d3',
-    messagingSenderId: '452846988202',
-    projectId: 'flutterdevmob3-e9b6f',
-    storageBucket: 'flutterdevmob3-e9b6f.firebasestorage.app',
+    apiKey:
+        String.fromEnvironment('FIREBASE_ANDROID_API_KEY', defaultValue: 'YOUR_ANDROID_API_KEY'),
+    appId:
+        String.fromEnvironment('FIREBASE_ANDROID_APP_ID', defaultValue: 'YOUR_ANDROID_APP_ID'),
+    messagingSenderId: String.fromEnvironment(
+      'FIREBASE_ANDROID_MESSAGING_SENDER_ID',
+      defaultValue: 'YOUR_ANDROID_SENDER_ID',
+    ),
+    projectId:
+        String.fromEnvironment('FIREBASE_PROJECT_ID', defaultValue: 'YOUR_FIREBASE_PROJECT_ID'),
+    storageBucket: String.fromEnvironment(
+      'FIREBASE_STORAGE_BUCKET',
+      defaultValue: 'YOUR_FIREBASE_STORAGE_BUCKET',
+    ),
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB_Xf702iUNLARlT8c-SWDp5-vOvJq3oGE',
-    appId: '1:452846988202:ios:c6545f74fc2edefa6159d3',
-    messagingSenderId: '452846988202',
-    projectId: 'flutterdevmob3-e9b6f',
-    storageBucket: 'flutterdevmob3-e9b6f.firebasestorage.app',
-    iosBundleId: 'com.example.s3FirebaseDemo',
+    apiKey: String.fromEnvironment('FIREBASE_IOS_API_KEY', defaultValue: 'YOUR_IOS_API_KEY'),
+    appId: String.fromEnvironment('FIREBASE_IOS_APP_ID', defaultValue: 'YOUR_IOS_APP_ID'),
+    messagingSenderId: String.fromEnvironment(
+      'FIREBASE_IOS_MESSAGING_SENDER_ID',
+      defaultValue: 'YOUR_IOS_SENDER_ID',
+    ),
+    projectId:
+        String.fromEnvironment('FIREBASE_PROJECT_ID', defaultValue: 'YOUR_FIREBASE_PROJECT_ID'),
+    storageBucket: String.fromEnvironment(
+      'FIREBASE_STORAGE_BUCKET',
+      defaultValue: 'YOUR_FIREBASE_STORAGE_BUCKET',
+    ),
+    iosBundleId:
+        String.fromEnvironment('FIREBASE_IOS_BUNDLE_ID', defaultValue: 'com.example.s3FirebaseDemo'),
   );
 
 }

@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDMrpsfouwvzmuCVH9kcKiH0cZuQyIkE0M</string>
+	<string>YOUR_IOS_API_KEY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>565155796538</string>
+	<string>YOUR_GCM_SENDER_ID</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.s3FirebaseDemo</string>
 	<key>PROJECT_ID</key>
-	<string>semaine-3</string>
+	<string>YOUR_PROJECT_ID</string>
 	<key>STORAGE_BUCKET</key>
-	<string>semaine-3.firebasestorage.app</string>
+	<string>YOUR_STORAGE_BUCKET</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:565155796538:ios:5c36f01f762e0ee4108703</string>
+	<string>YOUR_IOS_APP_ID</string>
 </dict>
 </plist>
